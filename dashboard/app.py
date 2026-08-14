@@ -56,11 +56,55 @@ st.markdown(
     padding-bottom: 3rem;
 }
 section[data-testid="stSidebar"] {
-    background-color: var(--secondary-background-color);
-    border-right: 1px solid rgba(128, 128, 128, 0.25);
+    background-color: #171b22 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    z-index: 999999 !important;
 }
+
+section[data-testid="stSidebar"] > div,
+section[data-testid="stSidebar"] > div > div {
+    background-color: #171b22 !important;
+}
+
 section[data-testid="stSidebar"] * {
     color: var(--text-color);
+}
+@media (max-width: 768px) {
+
+    section[data-testid="stSidebar"] {
+        background-color: #171b22 !important;
+        z-index: 999999 !important;
+        box-shadow: 8px 0 25px rgba(0, 0, 0, 0.30);
+
+        max-height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    section[data-testid="stSidebar"] > div {
+        background-color: #171b22 !important;
+
+        max-height: 100vh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+
+        box-sizing: border-box !important;
+    }
+
+    section[data-testid="stSidebar"] > div > div {
+        background-color: #171b22 !important;
+
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    section[data-testid="stSidebar"] > div::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    section[data-testid="stSidebar"] > div::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 10px;
+    }
 }
 
 .dashboard-header {
