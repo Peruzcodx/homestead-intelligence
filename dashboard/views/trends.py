@@ -35,7 +35,7 @@ def render_trends():
     # HEADER
     # ========================================================
 
-    st.title("Market Trends")
+    st.title("📈 Market Trends")
 
     st.markdown(
         """

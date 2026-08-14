@@ -134,7 +134,7 @@ def render_overview(df):
 
     if filtered_df.empty:
 
-        st.title("Homestead Intelligence")
+        st.title("🏠 Homestead Intelligence")
 
         st.caption(
             "Real Estate Market Intelligence Dashboard"
@@ -158,7 +158,7 @@ def render_overview(df):
     # HEADER
     # ========================================================
 
-    st.title("Homestead Intelligence")
+    st.title("🏠 Homestead Intelligence")
 
     st.caption(
         "Real Estate Market Intelligence Dashboard"

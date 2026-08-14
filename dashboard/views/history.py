@@ -13,7 +13,7 @@ def render_history(df):
     # HEADER
     # ========================================================
 
-    st.title("Market History")
+    st.title("🕒 Market History")
 
     st.markdown(
         """

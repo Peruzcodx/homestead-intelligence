@@ -27,7 +27,7 @@ def render_analysis():
     # HEADER
     # ========================================================
 
-    st.title("Market Analysis")
+    st.title("📊 Market Analysis")
 
     st.markdown(
         """

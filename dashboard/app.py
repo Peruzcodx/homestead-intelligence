@@ -69,6 +69,80 @@ section[data-testid="stSidebar"] > div > div {
 section[data-testid="stSidebar"] * {
     color: var(--text-color);
 }
+
+/* ============================================================
+   SIDEBAR NAVIGATION
+   ============================================================ */
+
+.sidebar-section-title {
+    color: #9ca3af;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.5rem 0 0.75rem 0;
+}
+/* ============================================================
+   SIDEBAR NAVIGATION
+   ============================================================ */
+
+.sidebar-section-title {
+    color: #9ca3af;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.5rem 0 0.75rem 0;
+}
+/* Navigation button */
+section[data-testid="stSidebar"] div.stButton {
+    margin-bottom: 0.15rem;
+}
+section[data-testid="stSidebar"] div.stButton > button {
+    width: 100%;
+    min-height: 34px !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    background-color: transparent !important;
+    color: #d1d5db !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+    padding: 0.3rem 0.6rem !important;
+    box-shadow: none !important;
+}
+
+/* Control navigation button internal content spacing */
+section[data-testid="stSidebar"] div.stButton > button > div {
+    gap: 0.35rem !important;
+    justify-content: flex-start !important;
+}
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease !important;
+}
+
+/* Hover */
+section[data-testid="stSidebar"] div.stButton > button:hover {
+    background-color: #222832 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+/* Active button */
+section[data-testid="stSidebar"] div.stButton > button[kind="primary"] {
+    background-color: #26313d !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+/* Focus */
+section[data-testid="stSidebar"] div.stButton > button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
 @media (max-width: 768px) {
 
     section[data-testid="stSidebar"] {
@@ -104,6 +178,30 @@ section[data-testid="stSidebar"] * {
     section[data-testid="stSidebar"] > div::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.25);
         border-radius: 10px;
+    }
+    /* Compact mobile sidebar */
+    section[data-testid="stSidebar"] {
+        width: 280px !important;
+        min-width: 280px !important;
+        max-width: 280px !important;
+    }
+
+    section[data-testid="stSidebar"] > div {
+        width: 280px !important;
+    }
+
+    /* Compact mobile navigation buttons */
+    section[data-testid="stSidebar"] div.stButton > button {
+        min-height: 30px !important;
+        padding: 0.15rem 0.25rem !important;
+        border-radius: 9px !important;
+    }
+
+    /* Navigation button text */
+    section[data-testid="stSidebar"] div.stButton > button p,
+    section[data-testid="stSidebar"] div.stButton > button span {
+        font-size: 1rem !important;
+        font-weight: 600 !important;
     }
 }
 
@@ -172,7 +270,6 @@ section[data-testid="stSidebar"] * {
 
 df = get_properties()
 
-
 # ============================================================
 # SIDEBAR
 # ============================================================
@@ -182,7 +279,7 @@ with st.sidebar:
     st.markdown(
         """
         <div style="
-            font-size: 1.35rem;
+            font-size: 1.70rem;
             font-weight: 800;
             margin-bottom: 0.2rem;
         ">
@@ -200,20 +297,42 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-    st.markdown("### Navigation")
-
-    page = st.radio(
-        "Go to",
-        [
-            "Overview",
-            "Market Trends",
-            "Market Activity",
-            "Market History",
-            "Market Analysis",
-            "Reports",
-        ],
-        label_visibility="collapsed",
+    st.markdown(
+        """
+        <div class="sidebar-section-title">
+            Navigation
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
+
+    navigation_items = [
+        (":material/dashboard:", "Overview"),
+        (":material/trending_up:", "Market Trends"),
+        (":material/monitor_heart:", "Market Activity"),
+        (":material/history:", "Market History"),
+        (":material/bar_chart:", "Market Analysis"),
+        (":material/description:", "Reports"),
+    ]
+
+    if "current_page" not in st.session_state:
+        st.session_state.current_page = "Overview"
+
+    for icon, label in navigation_items:
+
+        is_active = st.session_state.current_page == label
+
+        if st.button(
+            label,
+            key=f"nav_{label}",
+            use_container_width=True,
+            type="primary" if is_active else "secondary",
+            icon=icon,
+        ):
+            st.session_state.current_page = label
+            st.rerun()
+
+    page = st.session_state.current_page
 
     st.divider()
 
@@ -222,6 +341,9 @@ with st.sidebar:
     )
 
 
+# ============================================================
+# PAGE ROUTING
+# ============================================================
 # ============================================================
 # PAGE ROUTING
 # ============================================================

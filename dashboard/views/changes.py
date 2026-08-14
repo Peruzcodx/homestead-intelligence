@@ -12,7 +12,7 @@ def render_changes():
     # HEADER
     # ========================================================
 
-    st.title("Market Activity")
+    st.title("🔄 Market Activity")
 
     st.markdown(
         """
