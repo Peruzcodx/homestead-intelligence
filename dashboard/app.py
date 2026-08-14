@@ -1,13 +1,12 @@
 import streamlit as st
 
-from data import get_properties
-from views.overview import render_overview
-from views.trends import render_trends
-from views.changes import render_changes
-from views.history import render_history
-from views.analysis import render_analysis
-from views.reports import render_reports
-
+from dashboard.data import get_properties
+from dashboard.views.overview import render_overview
+from dashboard.views.trends import render_trends
+from dashboard.views.changes import render_changes
+from dashboard.views.history import render_history
+from dashboard.views.analysis import render_analysis
+from dashboard.views.reports import render_reports
 # ============================================================
 # PAGE CONFIG
 # ============================================================
